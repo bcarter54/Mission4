@@ -1,10 +1,4 @@
 ﻿
-using Mission4;
-internal class Program
-{
-    private static void Main(string[] args)
-    {
-        Support sus = new Support();
 
         // welcome the user
         Console.WriteLine("Welcome to Tic-Tac-Toe!");
