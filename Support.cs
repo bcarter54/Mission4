@@ -27,7 +27,7 @@ public class Support
     public (bool winnerExists, string winner, bool full) checkWinner(string[,] board)
     {
         int full = 0;
-        
+
         // Check rows for winner
         string results;
         for (int row = 0; row < 3; row++)
@@ -36,7 +36,7 @@ public class Support
             for (int col = 0; col < 3; col++)
             {
                 results += board[row, col];
-                
+
             }
             if (results.Equals("XXX"))
             {
@@ -52,7 +52,7 @@ public class Support
                 full++;
             }
         }
-        
+
         // Check columns for winner
         for (int col = 0; col < 3; col++)
         {
@@ -60,35 +60,23 @@ public class Support
             for (int row = 0; row < 3; row++)
             {
                 results += board[row, col];
-                
+
             }
-            
+
             if (results.Equals("XXX"))
             {
                 return (true, "X", false);
             }
             else if (results.Equals("OOO"))
             {
-                return (true, "O",false);
+                return (true, "O", false);
             }
-            
+
         }
-        
+
         //Check Diagonals for winner
-        results = board[0,0] + board[1,1] + board[2,2];
-        
-        if (results.Equals("XXX"))
-        {
-            return (true, "X", false);
-        }
-        else if (results.Equals("OOO"))
-        {
-            return (true, "O",false);
-        }
-        
-        //Check other diagonal
-        results = board[0,2] + board[1,1] + board[2,0];
-        
+        results = board[0, 0] + board[1, 1] + board[2, 2];
+
         if (results.Equals("XXX"))
         {
             return (true, "X", false);
@@ -97,16 +85,28 @@ public class Support
         {
             return (true, "O", false);
         }
-        
+
+        //Check other diagonal
+        results = board[0, 2] + board[1, 1] + board[2, 0];
+
+        if (results.Equals("XXX"))
+        {
+            return (true, "X", false);
+        }
+        else if (results.Equals("OOO"))
+        {
+            return (true, "O", false);
+        }
+
         //Check to see if the board is full
         if (full == 3)
         {
-            return (false, "CAT'S GAME",true);
+            return (false, "CAT'S GAME", true);
         }
         else
         {
-            return (false, "NA",false);
+            return (false, "NA", false);
         }
-        
+
     }
 }
