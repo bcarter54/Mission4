@@ -1,24 +1,33 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
 using Mission4;
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Support sus = new Support();
 
-Support su = new Support();
+        // welcome the user
+        Console.WriteLine("Welcome to Tic-Tac-Toe!");
+        // 2D array, but swag
+        string[,] board = new string[3, 3];
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                board[i, j] = "-";
+            }
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                Console.WriteLine(board[i, j]);
+            }
+        }
+        // ask each player in turn for input
 
-string[,] board = new string[3, 3];
+        //print board with support class' method
 
-board[0, 0] = "O";
-board[0, 1] = "X";
-board[0, 2] = "X";
-board[1, 0] = "O";
-board[1, 1] = "X";
-board[1, 2] = "X";
-board[2, 0] = "X";
-board[2, 1] = "O";
-board[2, 2] = "O";
-
-su.printBoard(board);
-var result = su.checkWinner(board);
-
-Console.WriteLine("And the winner is: " + result.winner);
-
-
-
+        //check for (and notify) winner using support method
+    }
+}
