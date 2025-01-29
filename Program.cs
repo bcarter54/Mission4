@@ -1,77 +1,84 @@
-﻿
+﻿using System;
+using Mission4;
 
-        // welcome the user
+class Driver
+{
+    static void Main()
+    {
         Console.WriteLine("Welcome to Tic-Tac-Toe!");
-        // 2D array, but swag
+
+        // Initialize game board
         string[,] board = new string[3, 3];
         for (int i = 0; i < 3; i++)
-        {
             for (int j = 0; j < 3; j++)
-            {
                 board[i, j] = "-";
+
+        Support support = new Support(); // Create an instance of Support
+
+        while (true) // Loop until a winner or draw
+        {
+            // Print board using Support class
+            support.printBoard(board);
+
+            // Player X move
+            Console.WriteLine("Player X, choose your space.");
+            (int row, int column) = GetValidMove(board);
+            board[row, column] = "X";
+
+            // Check for a winner
+            var (winnerExists, winner, full) = support.checkWinner(board);
+            if (winnerExists || full)
+            {
+                support.printBoard(board);
+                Console.WriteLine(winnerExists ? $"Player {winner} wins!" : "It's a tie!");
+                break;
+            }
+
+            // Player O move
+            support.printBoard(board);
+            Console.WriteLine("Player O, choose your space.");
+            (row, column) = GetValidMove(board);
+            board[row, column] = "O";
+
+            // Check for a winner
+            (winnerExists, winner, full) = support.checkWinner(board);
+            if (winnerExists || full)
+            {
+                support.printBoard(board);
+                Console.WriteLine(winnerExists ? $"Player {winner} wins!" : "It's a tie!");
+                break;
             }
         }
-        bool ugh = true;
-         do
+    }
+
+    // Method to get a valid move
+    static (int, int) GetValidMove(string[,] board)
+    {
+        int row, column;
+        while (true)
         {
-
-            // ignore our superior print
-            for (int i = 0; i < 3; i++)
+            Console.WriteLine("row coordinate:");
+            if (!int.TryParse(Console.ReadLine(), out row) || row < 0 || row > 2)
             {
-                string silliness = "";
-                for (int j = 0; j < 3; j++)
-                {
-                    silliness = silliness + " " + i + "," + j + board[i, j];
-
-                    if (j == 2)
-                    {
-                        Console.WriteLine(silliness);
-                    }
-                }
+                Console.WriteLine("Invalid input. Try again.");
+                continue;
             }
 
+            Console.WriteLine("column coordinate:");
+            if (!int.TryParse(Console.ReadLine(), out column) || column < 0 || column > 2)
+            {
+                Console.WriteLine("Invalid input. Try again.");
+                continue;
+            }
 
-            // ask each player in turn for input
-
-            Console.WriteLine("Player X, choose your space.");
-        bruh:
-            Console.WriteLine("Left coordinate:");
-            int left = int.Parse(Console.ReadLine());
-            Console.WriteLine("Right coordinate:");
-            int right = int.Parse(Console.ReadLine());
-
-            if (board[left, right] != "-")
+            if (board[row, column] != "-")
             {
                 Console.WriteLine("Choose a different space.");
-                goto bruh;
             }
             else
             {
-                board[left, right] = "X";
+                return (row, column);
             }
-
-            //    //print board with support class' method
-            //      sus.PrintBoard(board);
-
-            Console.WriteLine("Player O, choose your space.");
-        cringe:
-            Console.WriteLine("Left coordinate:");
-            left = int.Parse(Console.ReadLine());
-            Console.WriteLine("Right coordinate:");
-            right = int.Parse(Console.ReadLine());
-
-            if (board[left, right] != "-")
-            {
-                Console.WriteLine("Choose a different space.");
-                goto cringe;
-            }
-            else
-            {
-                board[left, right] = "O";
-            }
-
-            //    //check for (and notify) winner using support method
-            //    sus.CheckWinner();
-        } while (ugh == true) ;
+        }
     }
 }
