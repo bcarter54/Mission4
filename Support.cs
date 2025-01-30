@@ -2,7 +2,7 @@ namespace Mission4;
 
 public class Support
 {
-//This prints the board for the players to see
+//This prints the board for the players to see blah blah
     public void printBoard(string[,] board)
     {
         for (int row = 0; row < 3; row++)
