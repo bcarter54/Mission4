@@ -2,7 +2,7 @@ namespace Mission4;
 
 public class Support
 {
-    // Method to print board 
+//This prints the board for the players to see
     public void printBoard(string[,] board)
     {
         // Iterates through each row combination and prints out results
