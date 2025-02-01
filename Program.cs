@@ -7,7 +7,7 @@ class Driver
     {
         Console.WriteLine("Welcome to Tic-Tac-Toe!");
 
-        // Initialize game board
+        // 2D array, but swag    Initialize game board
         string[,] board = new string[3, 3];
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
@@ -57,14 +57,14 @@ class Driver
         int row, column;
         while (true)
         {
-            Console.WriteLine("row coordinate:");
+            Console.WriteLine("Enter the row coordinate (0 for the top, 1 for the center, 2 for the bottom):");
             if (!int.TryParse(Console.ReadLine(), out row) || row < 0 || row > 2)
             {
                 Console.WriteLine("Invalid input. Try again.");
                 continue;
             }
 
-            Console.WriteLine("column coordinate:");
+            Console.WriteLine("Enter the column coordinate (0 for the left, 1 for the middle, 2 for the right):");
             if (!int.TryParse(Console.ReadLine(), out column) || column < 0 || column > 2)
             {
                 Console.WriteLine("Invalid input. Try again.");
@@ -73,7 +73,7 @@ class Driver
 
             if (board[row, column] != "-")
             {
-                Console.WriteLine("Choose a different space.");
+                Console.WriteLine("That space is take. Please choose a different space.");
             }
             else
             {
